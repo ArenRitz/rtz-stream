@@ -1,16 +1,13 @@
 import { useState } from 'react'
-// import App.css
-import '../App.css';
 import axios from 'axios';
-
+import CircularProgressWithLabel from './MUI/CircularProgressWithLabel';
 function UploadTest() {
-
-
 
   const [file, setFile] = useState<File | null>(null);
   const [fileName, setFileName] = useState<string>('Choose File');
   const [uploadedFile, setUploadedFile] = useState('');
   const [progress, setProgress] = useState(0);
+
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFile(e.target.files![0]);
@@ -22,7 +19,7 @@ function UploadTest() {
     const formData = new FormData();
     formData.append('rtzvid', file!);
     try {
-      const res = axios.post('http://192.168.2.73:3000/upload', formData, {
+      const res = axios.post('http://174.88.174.40:3000/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
@@ -44,18 +41,17 @@ function UploadTest() {
   }
 
 
-
-
   return (
     <div className="App">
       <form id="my-form" onSubmit={onSubmit}>
-        {progress}
+       
+       
         <div className="custom-file mb-4">
           <input type="file" className="custom-file-input" id="customFile" name='rtzvid' onChange={onChange} />
         </div>
-        <input type="submit" value="Upload" name='rtzvid' className="btn btn-primary btn-block mt-4" />
+        <input type="submit" value="Upload" name='rtzvid' className=" " />
       </form>
-    
+      <CircularProgressWithLabel value={progress} />
     </div>
   );
 }

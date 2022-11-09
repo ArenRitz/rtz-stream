@@ -13,7 +13,7 @@ function VideoItemList({}: Props) {
 
     useEffect(() => {
         const getVideos = async () => {
-            const res = await axios.get('http://192.168.2.73:3000/videos');
+            const res = await axios.get('http://174.88.174.40:3000/videos');
            let vids = res.data.map((vid: any) => vid.uid);
             setVideoList(vids);
 
@@ -30,7 +30,7 @@ function VideoItemList({}: Props) {
 
 
   return (
-    <div> {videos} </div>
+    <div className='videos'> {videos} </div>
   )
 }
 
